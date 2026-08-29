@@ -1,34 +1,38 @@
-<!DOCTYPE html>
-<html lang="fr">
+  <!DOCTYPE html><html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LE MARCHÉ BUK</title>
-
-  <style>
+  <meta name="description" content="LE MARCHÉ BUK - Votre marché en ligne à Bukavu">
+  <title>LE MARCHÉ BUK</title>  <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f7f7f5;
+      background: #f5f7fa;
       color: #222;
     }
 
     header {
-      background: #087443;
+      background: #0b5ed7;
       color: white;
       padding: 18px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     .header-content {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 15px;
     }
 
     .logo {
@@ -36,19 +40,21 @@
       font-weight: bold;
     }
 
-    .cart {
+    .cart-button {
       background: white;
-      color: #087443;
+      color: #0b5ed7;
       border: none;
       padding: 10px 16px;
       border-radius: 8px;
+      cursor: pointer;
       font-weight: bold;
     }
 
     .hero {
+      background: linear-gradient(135deg, #0b5ed7, #063b88);
+      color: white;
       text-align: center;
-      padding: 70px 20px;
-      background: #e9f7ef;
+      padding: 65px 20px;
     }
 
     .hero h1 {
@@ -57,273 +63,608 @@
     }
 
     .hero p {
-      font-size: 18px;
-      color: #555;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 13px 22px;
-      background: #087443;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 45px 20px;
-    }
-
-    h2 {
+      font-size: 19px;
       margin-bottom: 25px;
     }
 
-    .categories,
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 18px;
-    }
-
-    .category,
-    .product {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-
-    .category {
-      text-align: center;
-      font-size: 18px;
-    }
-
-    .product-image {
-      height: 150px;
-      background: #eee;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 55px;
-    }
-
-    .price {
-      color: #087443;
-      font-size: 20px;
+    .hero-button {
+      display: inline-block;
+      background: #ffc107;
+      color: #111;
+      padding: 13px 25px;
+      border-radius: 8px;
+      text-decoration: none;
       font-weight: bold;
     }
 
-    footer {
-      background: #222;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-      margin-top: 30px;
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 35px 20px;
     }
-  </style>
-</head>
 
-<body>
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 30px;
+    }
 
-  <header>
-    <div class="header-content">
-      <div class="logo">LE MARCHÉ BUK</div>
-      <button class="cart">🛒 Panier</button>
-    </div>
-  </header>
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
 
-  <div class="hero">
-    <h1>Bienvenue au Marché de Bukavu</h1>
-    <p>Découvrez les produits et les artisans de Bukavu.</p>
-    <a href="#produits" class="button">Explorer le marché</a>
-  </div>
+    .search-box input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
 
-  <section>
-    <h2>📂 Catégories</h2>
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
 
-    <div class="categories">
-      <div class="category">📱 Électronique</div>
-      <div class="category">👕 Vêtements</div>
-      <div class="category">🏠 Maison</div>
-      <div class="category">🛠️ Matériaux</div>
-    </div>
-  </section>
+    .category-button {
+      border: none;
+      background: white;
+      border: 1px solid #0b5ed7;
+      color: #0b5ed7;
+      padding: 10px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
 
-  <section id="produits">
-    <h2>🛍️ Produits populaires</h2>
+    .category-button.active,
+    .category-button:hover {
+      background: #0b5ed7;
+      color: white;
+    }
 
-    <div class="products">
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-      <div class="product">
-        <div class="product-image">📱</div>
-        <h3>Smartphone</h3>
-        <p class="price">$120 USD</p>
-        <p>Prix disponible en CDF</p>
-        <button class="button">Ajouter au panier</button>
-      </div>
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s;
+    }
 
-      <div class="product">
-        <div class="product-image">👕</div>
-        <h3>Vêtement</h3>
-        <p class="price">$25 USD</p>
-        <p>Prix disponible en CDF</p>
-        <button class="button">Ajouter au panier</button>
-      </div>
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
 
-      <div class="product">
-        <div class="product-image">🛠️</div>
-        <h3>Matériel de construction</h3>
-        <p class="price">$50 USD</p>
-        <p>Prix disponible en CDF</p>
-        <button class="button">Ajouter au panier</button>
-      </div>
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #eee;
+    }
 
-    </div>
-  </section>
+    .product-info {
+      padding: 17px;
+    }
 
-  <footer>
-    <p>© 2026 LE MARCHÉ BUK</p>
-    <p>Fait avec soin à Bukavu 🇨🇩</p>
-  </footer>
-<script>
-const SUPABASE_URL = "https://jhuotcptnhoreaxlhqli.supabase.co";
-const SUPABASE_KEY = "sb_publishable_xslYFPnuqiPg_Kdu-mqTXw_Fj1f2kWP";
+    .product-info h3 {
+      margin-bottom: 8px;
+    }
 
-async function supabaseFetch(table) {
-  const response = await fetch(
-    `${SUPABASE_URL}/rest/v1/${table}?select=*`,
-    {
-      headers: {
-        apikey: SUPABASE_KEY,
-        Authorization: `Bearer ${SUPABASE_KEY}`
+    .description {
+      color: #666;
+      font-size: 14px;
+      min-height: 40px;
+    }
+
+    .price {
+      color: #0b5ed7;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .stock {
+      color: #198754;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .add-button {
+      width: 100%;
+      padding: 11px;
+      background: #0b5ed7;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .add-button:hover {
+      background: #084298;
+    }
+
+    .export-section {
+      background: white;
+      margin-top: 40px;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 12px;
+    }
+
+    .export-section h2 {
+      margin-bottom: 12px;
+    }
+
+    .export-section p {
+      color: #666;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    footer {
+      background: #111827;
+      color: white;
+      margin-top: 50px;
+      padding: 35px 20px;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 8px 0;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 550px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 12px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .close {
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding: 12px 0;
+      gap: 10px;
+    }
+
+    .quantity-buttons button {
+      padding: 5px 9px;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+    }
+
+    .total {
+      font-size: 21px;
+      font-weight: bold;
+      margin: 20px 0;
+      text-align: right;
+    }
+
+    .checkout-form input,
+    .checkout-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 15px;
+    }
+
+    .checkout-button {
+      width: 100%;
+      padding: 13px;
+      background: #198754;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .logo {
+        font-size: 19px;
       }
     }
-  );
+  </style></head><body>  <header>
+    <div class="header-content">
+      <div class="logo">🛒 LE MARCHÉ BUK</div>
+      <button class="cart-button" onclick="openCart()">
+        🛍️ Panier (<span id="cart-count">0</span>)
+      </button>
+    </div>
+  </header>  <section class="hero">
+    <h1>LE MARCHÉ BUK</h1>
+    <p>Votre marché en ligne à Bukavu</p>
+    <a href="#products-section" class="hero-button">Voir les produits</a>
+  </section>  <main class="container" id="products-section"><h2 class="section-title">Nos produits</h2>
 
-  if (!response.ok) {
-    throw new Error(`Erreur ${response.status}`);
-  }
+<div class="search-box">
+  <input
+    type="text"
+    id="search"
+    placeholder="🔎 Rechercher un produit..."
+    oninput="displayProducts()"
+  >
+</div>
 
-  return response.json();
-}
+<div class="categories">
+  <button class="category-button active" onclick="filterCategory('Tous', this)">
+    Tous
+  </button>
+  <button class="category-button" onclick="filterCategory('Électronique', this)">
+    Électronique
+  </button>
+  <button class="category-button" onclick="filterCategory('Mode', this)">
+    Mode
+  </button>
+  <button class="category-button" onclick="filterCategory('Maison', this)">
+    Maison
+  </button>
+  <button class="category-button" onclick="filterCategory('Construction', this)">
+    Construction
+  </button>
+</div>
 
-async function loadProducts() {
-  const productsContainer = document.querySelector(".products");
+<div class="products" id="products"></div>
 
-  try {
-    const products = await supabaseFetch("Products");
-    const images = await supabaseFetch("Product_images");
+<section class="export-section">
+  <h2>🌍 Nos exportations</h2>
+  <p>
+    Découvrez les preuves de nos produits déjà exportés.
+    Cette rubrique sera connectée à notre base de données pour
+    présenter les photos et documents d'exportation.
+  </p>
+</section>
 
-    productsContainer.innerHTML = "";
+  </main>  <footer>
+    <h3>LE MARCHÉ BUK</h3>
+    <p>Votre marché en ligne à Bukavu</p>
+    <p>📍 Bukavu, République Démocratique du Congo</p>
+    <p>© 2026 LE MARCHÉ BUK — Tous droits réservés</p>
+  </footer>  <!-- PANIER -->  <div class="modal" id="cart-modal">
+    <div class="modal-content">  <div class="modal-header">
+    <h2>🛍️ Mon panier</h2>
+    <span class="close" onclick="closeCart()">×</span>
+  </div>
 
-    if (products.length === 0) {
-      productsContainer.innerHTML =
-        "<p>Aucun produit disponible pour le moment.</p>";
-      return;
+  <div id="cart-items"></div>
+
+  <div class="total">
+    Total : <span id="cart-total">$0.00</span>
+  </div>
+
+  <h3 style="margin-bottom:15px;">Informations de commande</h3>
+
+  <div class="checkout-form">
+    <input type="text" id="customer-name" placeholder="Votre nom">
+    <input type="tel" id="customer-phone" placeholder="Numéro de téléphone">
+    <input type="text" id="customer-address" placeholder="Adresse de livraison">
+    <textarea id="customer-message" rows="3" placeholder="Message (facultatif)"></textarea>
+
+    <button class="checkout-button" onclick="placeOrder()">
+      ✅ Envoyer la commande
+    </button>
+  </div>
+
+</div>
+
+  </div>  <script>
+    const products = [
+      {
+        id: 1,
+        name: "Starlink Mini",
+        description: "Kit Internet compact et facile à transporter.",
+        price: 180,
+        category: "Électronique",
+        stock: 10,
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 2,
+        name: "Starlink Standard",
+        description: "Solution Internet haut débit pour maison ou entreprise.",
+        price: 370,
+        category: "Électronique",
+        stock: 8,
+        image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 3,
+        name: "Routeur Wi-Fi",
+        description: "Routeur pour partager votre connexion Internet.",
+        price: 45,
+        category: "Électronique",
+        stock: 20,
+        image: "https://images.unsplash.com/photo-1606904825846-647eb07f5be2?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 4,
+        name: "Polo Premium",
+        description: "Polo moderne disponible en plusieurs tailles.",
+        price: 25,
+        category: "Mode",
+        stock: 30,
+        image: "https://images.unsplash.com/photo-1625910513413-5fc45f2d2f3c?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 5,
+        name: "Matériel de construction",
+        description: "Produits et équipements pour vos travaux.",
+        price: 100,
+        category: "Construction",
+        stock: 15,
+        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+      },
+      {
+        id: 6,
+        name: "Accessoires maison",
+        description: "Articles pratiques pour votre maison.",
+        price: 30,
+        category: "Maison",
+        stock: 25,
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    let cart = [];
+    let selectedCategory = "Tous";
+
+    function displayProducts() {
+      const container = document.getElementById("products");
+      const search = document.getElementById("search").value.toLowerCase();
+
+      const filtered = products.filter(product => {
+        const matchesCategory =
+          selectedCategory === "Tous" ||
+          product.category === selectedCategory;
+
+        const matchesSearch =
+          product.name.toLowerCase().includes(search) ||
+          product.description.toLowerCase().includes(search);
+
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML =
+          '<div class="empty">Aucun produit trouvé.</div>';
+        return;
+      }
+
+      container.innerHTML = filtered.map(product => `
+        <div class="product-card">
+          <img
+            class="product-image"
+            src="${product.image}"
+            alt="${product.name}"
+            onerror="this.src='https://via.placeholder.com/800x500?text=Produit'"
+          >
+
+          <div class="product-info">
+            <h3>${product.name}</h3>
+
+            <p class="description">
+              ${product.description}
+            </p>
+
+            <div class="price">
+              $${product.price.toFixed(2)}
+            </div>
+
+            <div class="stock">
+              ✓ Stock disponible : ${product.stock}
+            </div>
+
+            <button
+              class="add-button"
+              onclick="addToCart(${product.id})"
+            >
+              Ajouter au panier
+            </button>
+          </div>
+        </div>
+      `).join("");
     }
 
-    products.forEach(product => {
-      const image = images.find(
-        img => String(img.Product_id) === String(product.id) && img.Is_main === true
+    function filterCategory(category, button) {
+      selectedCategory = category;
+
+      document
+        .querySelectorAll(".category-button")
+        .forEach(btn => btn.classList.remove("active"));
+
+      button.classList.add("active");
+
+      displayProducts();
+    }
+
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+
+      const existing = cart.find(item => item.id === productId);
+
+      if (existing) {
+        if (existing.quantity < product.stock) {
+          existing.quantity++;
+        } else {
+          alert("Stock maximum atteint.");
+        }
+      } else {
+        cart.push({
+          ...product,
+          quantity: 1
+        });
+      }
+
+      updateCart();
+      alert(product.name + " ajouté au panier.");
+    }
+
+    function updateCart() {
+      const count = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
       );
 
-      const card = document.createElement("div");
-      card.className = "product";
+      document.getElementById("cart-count").textContent = count;
 
-      card.innerHTML = `
-        <div class="product-image">
-          ${
-            image
-              ? `<img src="${image.Image_url}" alt="${product.Name}"
-                   style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`
-              : "🛍️"
-          }
+      const itemsContainer = document.getElementById("cart-items");
+
+      if (cart.length === 0) {
+        itemsContainer.innerHTML =
+          '<div class="empty">Votre panier est vide.</div>';
+
+        document.getElementById("cart-total").textContent = "$0.00";
+        return;
+      }
+
+      itemsContainer.innerHTML = cart.map(item => `
+        <div class="cart-item">
+
+          <div>
+            <strong>${item.name}</strong><br>
+            $${item.price.toFixed(2)} × ${item.quantity}
+          </div>
+
+          <div class="quantity-buttons">
+            <button onclick="changeQuantity(${item.id}, -1)">−</button>
+            <button onclick="changeQuantity(${item.id}, 1)">+</button>
+          </div>
+
         </div>
+      `).join("");
 
-        <h3>${product.Name}</h3>
+      const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
 
-        <p>${product.description || ""}</p>
+      document.getElementById("cart-total").textContent =
+        "$" + total.toFixed(2);
+    }
 
-        <p class="price">
-          $${product.price_usd ?? 0} USD
-        </p>
+    function changeQuantity(productId, change) {
+      const item = cart.find(item => item.id === productId);
 
-        <p>
-          ${product.price_cdf ?? 0} CDF
-        </p>
+      if (!item) return;
 
-        <button class="button">
-          Ajouter au panier
-        </button>
-      `;
+      item.quantity += change;
 
-      productsContainer.appendChild(card);
-    card.querySelector(".button").onclick = () => {
-  addToCart(product);
-};
-    
-  } catch (error) {
-    console.error(error);
-    productsContainer.innerHTML =
-      "<p>Impossible de charger les produits.</p>";
-  }
-}
-// ===== PANIER =====
+      if (item.quantity <= 0) {
+        cart = cart.filter(item => item.id !== productId);
+      }
 
-let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      updateCart();
+    }
 
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
+    function openCart() {
+      document.getElementById("cart-modal").style.display = "block";
+      updateCart();
+    }
 
-function addToCart(product) {
-  const existing = cart.find(item => String(item.id) === String(product.id));
+    function closeCart() {
+      document.getElementById("cart-modal").style.display = "none";
+    }
 
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({
-      id: product.id,
-      name: product.Name,
-      price_usd: Number(product.price_usd || 0),
-      price_cdf: Number(product.price_cdf || 0),
-      quantity: 1
-    });
-  }
+    function placeOrder() {
+      if (cart.length === 0) {
+        alert("Votre panier est vide.");
+        return;
+      }
 
-  saveCart();
-  alert("Produit ajouté au panier !");
-}
+      const name = document.getElementById("customer-name").value.trim();
+      const phone = document.getElementById("customer-phone").value.trim();
+      const address = document.getElementById("customer-address").value.trim();
 
-function showCart() {
-  if (cart.length === 0) {
-    alert("Votre panier est vide.");
-    return;
-  }
+      if (!name || !phone || !address) {
+        alert("Veuillez remplir votre nom, téléphone et adresse.");
+        return;
+      }
 
-  let message = "🛒 VOTRE PANIER\n\n";
-  let totalUSD = 0;
+      const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
 
-  cart.forEach(item => {
-    const subtotal = item.price_usd * item.quantity;
-    totalUSD += subtotal;
+      alert(
+        "Commande enregistrée !\n\n" +
+        "Client : " + name + "\n" +
+        "Téléphone : " + phone + "\n" +
+        "Adresse : " + address + "\n" +
+        "Total : $" + total.toFixed(2) +
+        "\n\nLa connexion à Supabase sera ajoutée ensuite."
+      );
 
-    message += `${item.name} x${item.quantity} = $${subtotal} USD\n`;
-  });
+      cart = [];
+      updateCart();
+      closeCart();
 
-  message += `\nTOTAL : $${totalUSD.toFixed(2)} USD`;
+      document.getElementById("customer-name").value = "";
+      document.getElementById("customer-phone").value = "";
+      document.getElementById("customer-address").value = "";
+      document.getElementById("customer-message").value = "";
+    }
 
-  alert(message);
-}
+    window.onclick = function(event) {
+      const modal = document.getElementById("cart-modal");
 
-// Bouton panier
-document.querySelector(".cart").addEventListener("click", showCart);
-loadProducts();
-</script>
-</body>
-          </html>
+      if (event.target === modal) {
+        closeCart();
+      }
+    };
+
+    displayProducts();
+    updateCart();
+  </script></body>
+    </html>  
