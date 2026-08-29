@@ -464,6 +464,51 @@
   image: "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=800&q=80"
     }
     ];
+];
+
+const supabaseClient = window.supabase.createClient(
+  window.supabaseConfig.url,
+  window.supabaseConfig.key
+);
+
+async function loadProducts() {
+  const { data, error } = await supabaseClient
+    .from("Products")
+    .select(`
+      id,
+      Name,
+      description,
+      price_usd,
+      price_cdf,
+      Stock,
+      category_id,
+      categories (
+        Name
+      )
+    `);
+
+  if (error) {
+    console.error("Erreur Supabase :", error);
+    return;
+  }
+
+  products.length = 0;
+
+  data.forEach(product => {
+    products.push({
+      id: product.id,
+      name: product.Name,
+      description: product.description || "",
+      price: Number(product.price_usd),
+      price_cdf: Number(product.price_cdf),
+      category: product.categories?.Name || "Autres",
+      stock: Number(product.Stock),
+      image: "https://via.placeholder.com/800x500?text=Produit"
+    });
+  });
+
+  displayProducts();
+}
 
     let cart = [];
     let selectedCategory = "Tous";
@@ -672,7 +717,7 @@
       }
     };
 
-    displayProducts();
+    loadProducts();
     updateCart();
   </script><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase.js"></script></body>
     </html>  
