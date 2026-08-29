@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LE MARCHÉ BUK</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f7f5;
+      color: #222;
+    }
+
+    header {
+      background: #087443;
+      color: white;
+      padding: 18px 20px;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .cart {
+      background: white;
+      color: #087443;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 20px;
+      background: #e9f7ef;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 13px 22px;
+      background: #087443;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 45px 20px;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+    }
+
+    .categories,
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+    }
+
+    .category,
+    .product {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .category {
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .product-image {
+      height: 150px;
+      background: #eee;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+    }
+
+    .price {
+      color: #087443;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-content">
+      <div class="logo">LE MARCHÉ BUK</div>
+      <button class="cart">🛒 Panier</button>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>Bienvenue au Marché de Bukavu</h1>
+    <p>Découvrez les produits et les artisans de Bukavu.</p>
+    <a href="#produits" class="button">Explorer le marché</a>
+  </div>
+
+  <section>
+    <h2>📂 Catégories</h2>
+
+    <div class="categories">
+      <div class="category">📱 Électronique</div>
+      <div class="category">👕 Vêtements</div>
+      <div class="category">🏠 Maison</div>
+      <div class="category">🛠️ Matériaux</div>
+    </div>
+  </section>
+
+  <section id="produits">
+    <h2>🛍️ Produits populaires</h2>
+
+    <div class="products">
+
+      <div class="product">
+        <div class="product-image">📱</div>
+        <h3>Smartphone</h3>
+        <p class="price">$120 USD</p>
+        <p>Prix disponible en CDF</p>
+        <button class="button">Ajouter au panier</button>
+      </div>
+
+      <div class="product">
+        <div class="product-image">👕</div>
+        <h3>Vêtement</h3>
+        <p class="price">$25 USD</p>
+        <p>Prix disponible en CDF</p>
+        <button class="button">Ajouter au panier</button>
+      </div>
+
+      <div class="product">
+        <div class="product-image">🛠️</div>
+        <h3>Matériel de construction</h3>
+        <p class="price">$50 USD</p>
+        <p>Prix disponible en CDF</p>
+        <button class="button">Ajouter au panier</button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 LE MARCHÉ BUK</p>
+    <p>Fait avec soin à Bukavu 🇨🇩</p>
+  </footer>
+
+</body>
+          </html>
