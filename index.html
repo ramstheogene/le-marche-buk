@@ -190,6 +190,89 @@
     <p>© 2026 LE MARCHÉ BUK</p>
     <p>Fait avec soin à Bukavu 🇨🇩</p>
   </footer>
+<script>
+const SUPABASE_URL = "https://jhuotcptnhoreaxlhqli.supabase.co";
+const SUPABASE_KEY = "sb_publishable_xslYFPnuqiPg_Kdu-mqTXw_Fj1f2kWP";
 
+async function supabaseFetch(table) {
+  const response = await fetch(
+    `${SUPABASE_URL}/rest/v1/${table}?select=*`,
+    {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Erreur ${response.status}`);
+  }
+
+  return response.json();
+}
+
+async function loadProducts() {
+  const productsContainer = document.querySelector(".products");
+
+  try {
+    const products = await supabaseFetch("Products");
+    const images = await supabaseFetch("Product_images");
+
+    productsContainer.innerHTML = "";
+
+    if (products.length === 0) {
+      productsContainer.innerHTML =
+        "<p>Aucun produit disponible pour le moment.</p>";
+      return;
+    }
+
+    products.forEach(product => {
+      const image = images.find(
+        img => String(img.Product_id) === String(product.id) && img.Is_main === true
+      );
+
+      const card = document.createElement("div");
+      card.className = "product";
+
+      card.innerHTML = `
+        <div class="product-image">
+          ${
+            image
+              ? `<img src="${image.Image_url}" alt="${product.Name}"
+                   style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`
+              : "🛍️"
+          }
+        </div>
+
+        <h3>${product.Name}</h3>
+
+        <p>${product.description || ""}</p>
+
+        <p class="price">
+          $${product.price_usd ?? 0} USD
+        </p>
+
+        <p>
+          ${product.price_cdf ?? 0} CDF
+        </p>
+
+        <button class="button">
+          Ajouter au panier
+        </button>
+      `;
+
+      productsContainer.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error(error);
+    productsContainer.innerHTML =
+      "<p>Impossible de charger les produits.</p>";
+  }
+}
+
+loadProducts();
+</script>
 </body>
           </html>
