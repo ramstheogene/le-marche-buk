@@ -263,7 +263,9 @@ async function loadProducts() {
       `;
 
       productsContainer.appendChild(card);
-    
+    card.querySelector(".button").onclick = () => {
+  addToCart(product);
+};
     
   } catch (error) {
     console.error(error);
