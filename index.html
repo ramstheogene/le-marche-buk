@@ -271,7 +271,56 @@ async function loadProducts() {
       "<p>Impossible de charger les produits.</p>";
   }
 }
+// ===== PANIER =====
 
+let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function addToCart(product) {
+  const existing = cart.find(item => String(item.id) === String(product.id));
+
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.Name,
+      price_usd: Number(product.price_usd || 0),
+      price_cdf: Number(product.price_cdf || 0),
+      quantity: 1
+    });
+  }
+
+  saveCart();
+  alert("Produit ajouté au panier !");
+}
+
+function showCart() {
+  if (cart.length === 0) {
+    alert("Votre panier est vide.");
+    return;
+  }
+
+  let message = "🛒 VOTRE PANIER\n\n";
+  let totalUSD = 0;
+
+  cart.forEach(item => {
+    const subtotal = item.price_usd * item.quantity;
+    totalUSD += subtotal;
+
+    message += `${item.name} x${item.quantity} = $${subtotal} USD\n`;
+  });
+
+  message += `\nTOTAL : $${totalUSD.toFixed(2)} USD`;
+
+  alert(message);
+}
+
+// Bouton panier
+document.querySelector(".cart").addEventListener("click", showCart);
 loadProducts();
 </script>
 </body>
